@@ -1,0 +1,45 @@
+import time
+import random
+
+def get_text():
+    texts = [
+        "The quick brown fox jumps over the lazy dog.",
+        "Python is a great programming language for beginners.",
+        "Typing speed is an important skill in the digital age.",
+        "Machine learning and AI are transforming the world.",
+        "Practice makes perfect when it comes to typing speed."
+    ]
+    return random.choice(texts)
+
+def typing_speed_test():
+    print("Typing Speed Test")
+    print("Type the following sentence as fast and accurately as you can:")
+    
+    text = get_text()
+    print("\n", text)
+    
+    input("\nPress Enter when you are ready...")
+    start_time = time.time()
+    
+    user_input = input("\nStart typing: ")
+    end_time = time.time()
+    
+    time_taken = end_time - start_time
+    
+    words_in_text = len(text.split())
+    words_in_input = len(user_input.split())
+    
+    accuracy = sum(1 for a, b in zip(user_input, text) if a == b) / len(text) * 100 if text else 0
+    
+    speed = words_in_text / (time_taken / 60)
+    
+    print("\nResults:")
+    print(f"Time taken: {time_taken:.2f} seconds")
+    print(f"Words per minute: {speed:.2f} WPM")
+    print(f"Accuracy: {accuracy:.2f}%")
+
+def main():
+    typing_speed_test()
+    
+if __name__ == "__main__":
+    main()
